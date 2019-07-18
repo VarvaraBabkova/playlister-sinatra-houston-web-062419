@@ -6,4 +6,12 @@ class ApplicationController < Sinatra::Base
   get '/' do
     erb :index
   end
+
+  def slug (name)
+  	return name.split.join("_")
+  end
+
+  def unslug (name)
+  	return name.split("_").join(" ")
+  end
 end

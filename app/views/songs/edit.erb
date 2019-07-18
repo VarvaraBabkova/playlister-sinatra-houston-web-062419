@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+    Edit the song:
+    <br>
+    <form method="post" action="/songs/<%=slug(@song.name)%>">
+    	<input id="hidden" type="hidden" name="_method" value="patch">
+    	Song name : <input type="text" name="name" value="<%=@song.name%>">
+    	<br>
+
+    	<%@all_genres.each do |l|%>
+
+    		<% if @song.genres.include?(l)  %>
+                <input type="checkbox" name="genres[]" value="<%= l.id %>" checked> <%=l.name%><br>
+
+            <%else%>
+                <input type="checkbox" name="genres[]" value="<%= l.id %>" > <%=l.name%><br>
+
+            <%end%>
+
+                
+        <%end%>
+
+
+		Artist name : 
+		<input type="text" name="artist_name" value="<%= @song.artist.name %>" list="productName"/>
+		<datalist id="productName">
+
+			<%@all_artists.each do |l|%>
+				
+                	<option value="<%= l.name %>"><%=l.name%></option>
+
+        	<%end%>
+		   
+		</datalist>
+
+
+		    	<input type="submit" name="submit">
+
+    </form>
+
+  </body>
+</html>

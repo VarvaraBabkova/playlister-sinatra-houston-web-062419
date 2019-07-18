@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+    Create a new song:
+    <br>
+    <form method="post" action="/songs">
+    	Song name : <input type="text" name="name">
+    	<br>
+
+    	<%@all_genres.each do |l|%>
+                <input type="checkbox" name="genres[]" value="<%= l.id %>" > <%=l.name%><br>
+        <%end%>
+
+
+		Artist name : 
+		<input type="text" name="artist_name" list="productName"/>
+		<datalist id="productName">
+
+			<%@all_artists.each do |l|%>
+				<option value="<%= l.name %>"><%=l.name%></option>
+                
+        	<%end%>
+		   
+		</datalist>
+
+
+		    	<input type="submit" name="submit">
+
+
+
+    </form>
+
+  </body>
+</html>
